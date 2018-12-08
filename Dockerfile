@@ -9,6 +9,9 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node
 # install bower
 RUN npm install -g bower
 
+# allow bower to run as root
+RUN echo '{ "allow_root": true }' >> /root/.bowerrc
+
 # install awscli
 RUN    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
     && python get-pip.py \
