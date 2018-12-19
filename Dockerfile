@@ -1,13 +1,10 @@
 FROM maven:3.3.9
 
+# fetch latest repos for node
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+
 RUN    apt-get update \
-    && apt-get install --always-yes=true python jq nodejs npm
-
-# fix node
-RUN ln -s /usr/bin/nodejs /usr/bin/node
-
-# install bower
-RUN npm install -g bower
+    && apt-get install --always-yes=true python jq nodejs
 
 # allow bower to run as root
 RUN echo '{ "allow_root": true }' >> /root/.bowerrc
